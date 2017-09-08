@@ -149,6 +149,59 @@ list5 = tail list4
 -- let's take only 10
 list6 = take 10 [2,7 ..]
 
+-- let's filter
+list7 = filter (>10) [2..20]
+
+list7' = [x | x <- [2..20], x > 10]
+
 -- something a bit less boring
 fib = [1, 1] ++ zipWith (+) fib (drop 1 fib)
+```
+
+## tuples
+
+```haskell
+-- examples/example5.hs
+
+tuple1::(Int, Char)
+tuple1 = (1, 's')
+
+tuple2::([Char], Integer)
+tuple2 = ("some", 3)
+
+first::[Char]
+first = fst tuple2
+
+second::Integer
+second = snd tuple2
+
+listOfTuples = zip [1..] [2,4..]
+```
+
+## polymorphism and pattern matching
+
+```haskell
+-- examples/example6.hs
+
+head'::[t] -> t
+head' [] = error "not defined for empty list"
+head' (x:xs) = x
+
+snd'::(a, b) -> b
+snd' (_, x) = x
+
+map'::(a -> b) -> [a] -> [b]
+map' f [] = []
+map' f (x:xs) = f x : map' f xs
+
+-- longer form of pattern matching
+permutations::[a] -> [[a]]
+permutations list =
+  case list of
+    [] -> [[]]
+    (x:xs) -> concatMap (insert x) $ permutations xs
+      where
+        insert::a->[a]->[[a]]
+        insert x [] = [[x]]
+        insert x ls@(y:ys) = (x:ls) : (map (y:) $ insert x ys)
 ```
