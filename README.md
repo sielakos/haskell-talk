@@ -67,6 +67,12 @@ hypotenuse 4 :: Floating a => a -> a
 applyToList :: (Enum a, Num a) => (a -> b) -> [b]
 ```
 
+Also valid method of loading file
+
+```console
+mariusz:~/playground/haskell-talk (master)$ ghci examples/example1.hs
+```
+
 ## non-strict semantics
 
 lazy execution, nothing is evaluated until needed and it's done only once.
@@ -204,4 +210,52 @@ permutations list =
         insert::a->[a]->[[a]]
         insert x [] = [[x]]
         insert x ls@(y:ys) = (x:ls) : (map (y:) $ insert x ys)
+```
+
+## lambdas and currying
+
+```haskell
+-- examples/example7.hs
+
+func1::Int->Int->Int
+func1 x y = x + y * 2
+
+-- is the same as
+func2::Int->Int->Int
+func2 = \x y -> x + y * 2
+
+-- is the same as
+func3::Int->Int->Int
+func3 = \x -> \y -> x + y * 2
+
+--that why we can do this
+something = func1 2
+
+-- and it's the same as
+something2 y = func1 2 y
+```
+
+## compilation
+
+example program
+
+```haskell
+-- examples/program1.hs
+import System.Environment
+import Data.List
+
+main = do
+  args <- getArgs
+  foldl1 (\y x -> y >> x) $ map (\arg -> print $ show $ sum [1 .. read arg]) args
+```
+
+```console
+mariusz:~/playground/haskell-talk (master)$ ghc --make examples/program1.hs -O
+[1 of 1] Compiling Main             ( examples/program1.hs, examples/program1.o )
+Linking examples/program1 ...
+mariusz:~/playground/haskell-talk (master)$ ./examples/program1 5 10 15 10000
+"15"
+"55"
+"120"
+"50005000"
 ```
