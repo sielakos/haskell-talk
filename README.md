@@ -1,4 +1,4 @@
-# Quick introduction to Haskell
+# Somehow chaotic introduction/overview to Haskell
 
 ## History
 
@@ -7,6 +7,12 @@ Named after Haskell Curry and rest is too boring, so let's skip it.
 ## How to get it?
 
 https://www.haskell.org/
+
+## This talk
+
+https://github.com/sielakos/haskell-talk
+
+You can run examples with docker or just install haskell or whatever
 
 ## What the hell is that Haskell anyway?
 
@@ -80,7 +86,7 @@ loop xs = xs ++ loop xs
 (0.01 secs, 0 bytes)
 ```
 
-## strong static typing**
+## strong static typing
 
 No implicit type conversions
 
@@ -106,4 +112,43 @@ Prelude> :t 'a'
 Prelude> let f x = x + 1
 Prelude> :t f
 f :: Num a => a -> a
+```
+
+## recursion
+
+```haskell
+-- examples/example3.hs
+factorial n = if n <= 0 then 1 else n * factorial (n - 1)
+
+-- tail recursive version
+factorial2 n = fac n 1
+  where fac 0 acc = acc
+        fac n acc = fac (n - 1) $! acc * n
+```
+
+## lists
+
+```haskell
+-- examples/example4.hs
+
+-- sugar code version
+list1 = [1, 2, 3, 4]
+
+-- it's all head and tail
+list2 = 1 : 2 : 3 : 4 : []
+
+-- join lists
+list3 = [1, 2] ++ [3, 4]
+
+-- heads off and full reverse
+list4 = head list1 : reverse list3
+
+-- nice tail you have there
+list5 = tail list4
+
+-- let's take only 10
+list6 = take 10 [2,7 ..]
+
+-- something a bit less boring
+fib = [1, 1] ++ zipWith (+) fib (drop 1 fib)
 ```
