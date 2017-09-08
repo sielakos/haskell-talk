@@ -44,7 +44,7 @@ applyToList f = map f [1..10]
 Let's see it in action
 
 ```console
-mariusz:~/playground/haskell-talk (master)$ ghci
+$ ghci
 GHCi, version 7.10.3: http://www.haskell.org/ghc/  :? for help
 Prelude> :load examples/example1.hs
 [1 of 1] Compiling Main             ( examples/example1.hs, interpreted )
@@ -70,7 +70,7 @@ applyToList :: (Enum a, Num a) => (a -> b) -> [b]
 Also valid method of loading file
 
 ```console
-mariusz:~/playground/haskell-talk (master)$ ghci examples/example1.hs
+$ ghci examples/example1.hs
 ```
 
 ## non-strict semantics
@@ -235,6 +235,10 @@ something = func1 2
 something2 y = func1 2 y
 ```
 
+### guards
+
+
+
 ## compilation
 
 example program
@@ -250,10 +254,10 @@ main = do
 ```
 
 ```console
-mariusz:~/playground/haskell-talk (master)$ ghc --make examples/program1.hs -O
+$ ghc --make examples/program1.hs -O
 [1 of 1] Compiling Main             ( examples/program1.hs, examples/program1.o )
 Linking examples/program1 ...
-mariusz:~/playground/haskell-talk (master)$ ./examples/program1 5 10 15 10000
+$ ./examples/program1 5 10 15 10000
 "15"
 "55"
 "120"
