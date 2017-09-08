@@ -14,6 +14,43 @@ https://github.com/sielakos/haskell-talk
 
 You can run examples with docker or just install haskell or whatever
 
+## Usage
+
+### interactive
+
+```console
+$ ghci
+GHCi, version 7.10.3: http://www.haskell.org/ghc/  :? for help
+Prelude> 
+```
+
+### compilation
+
+example program
+
+```haskell
+-- examples/program1.hs
+import System.Environment
+import Data.List
+import Control.Monad
+
+main = do
+  args <- getArgs
+  -- mapM_ is like map, but for also accumulates monads
+  mapM_ (\arg -> print $ sum [1 .. read arg]) args 
+```
+
+```console
+$ ghc --make examples/program1.hs -O
+[1 of 1] Compiling Main             ( examples/program1.hs, examples/program1.o )
+Linking examples/program1 ...
+$ ./examples/program1 5 10 15 10000
+"15"
+"55"
+"120"
+"50005000"
+```
+
 ## What the hell is that Haskell anyway?
 
 So according to Wiki:
@@ -244,31 +281,6 @@ someFunction x
   | odd x = "value is odd"
   | x `mod` 3 == 0 = "value is divisible by 3"
   | otherwise = "value is even"
-```
-
-## compilation
-
-example program
-
-```haskell
--- examples/program1.hs
-import System.Environment
-import Data.List
-
-main = do
-  args <- getArgs
-  foldl1 (\y x -> y >> x) $ map (\arg -> print $ show $ sum [1 .. read arg]) args
-```
-
-```console
-$ ghc --make examples/program1.hs -O
-[1 of 1] Compiling Main             ( examples/program1.hs, examples/program1.o )
-Linking examples/program1 ...
-$ ./examples/program1 5 10 15 10000
-"15"
-"55"
-"120"
-"50005000"
 ```
 
 ## Maybe and Either
