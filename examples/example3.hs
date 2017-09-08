@@ -1,0 +1,1 @@
+-- examples/example3.hs

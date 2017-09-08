@@ -18,7 +18,9 @@ Haskell is a standardized, general-purpose purely functional programming languag
 
 So...
 
-**purely functional** - mathematical functions, immutable data and no side effects.
+## purely functional
+
+mathematical functions, immutable data and no side effects.
 
 ```haskell
 -- examples/example1.hs
@@ -59,7 +61,9 @@ hypotenuse 4 :: Floating a => a -> a
 applyToList :: (Enum a, Num a) => (a -> b) -> [b]
 ```
 
-**non-strict semantics** - lazy execution, nothing is evaluated until needed and it's done only once.
+## non-strict semantics
+
+lazy execution, nothing is evaluated until needed and it's done only once.
 
 ```haskell
 -- examples/example2.hs
@@ -74,4 +78,32 @@ loop xs = xs ++ loop xs
 *Main> take 100 primes
 [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109,113,127,131,137,139,149,151,157,163,167,173,179,181,191,193,197,199,211,223,227,229,233,239,241,251,257,263,269,271,277,281,283,293,307,311,313,317,331,337,347,349,353,359,367,373,379,383,389,397,401,409,419,421,431,433,439,443,449,457,461,463,467,479,487,491,499,503,509,521,523,541]
 (0.01 secs, 0 bytes)
+```
+
+## strong static typing**
+
+No implicit type conversions
+
+```console
+Prelude> 3 == 4
+False
+Prelude> 3 == "true"
+
+<interactive>:4:1:
+    No instance for (Num [Char]) arising from the literal ‘3’
+    In the first argument of ‘(==)’, namely ‘3’
+    In the expression: 3 == "true"
+    In an equation for ‘it’: it = 3 == "true"
+```
+
+Everything is typed
+
+```console
+Prelude> :t "some text"
+"some text" :: [Char]
+Prelude> :t 'a'
+'a' :: Char
+Prelude> let f x = x + 1
+Prelude> :t f
+f :: Num a => a -> a
 ```
