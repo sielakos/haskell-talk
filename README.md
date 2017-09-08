@@ -31,4 +31,25 @@ hypo3::Floating a => a -> a
 hypo3 = hypotenuse 3
 ```
 
+```console
+mariusz:~/playground/haskell-talk (master)$ ghci
+GHCi, version 7.10.3: http://www.haskell.org/ghc/  :? for help
+Prelude> :load examples/example1.hs
+[1 of 1] Compiling Main             ( examples/example1.hs, interpreted )
+Ok, modules loaded: Main.
+*Main> addOne 3
+4
+*Main> :t addOne
+addOne :: Int -> Int
+*Main> :t addOne 5
+addOne 5 :: Int
+*Main> hypotenuse 3 4
+5.0
+*Main> :t hypotenuse 4
+hypotenuse 4 :: Floating a => a -> a
+*Main> hypo3 4
+5.0
+```
+
+
 *non-strict semantics* - lazy execution, nothing is evaluated until needed and it's done only once.
