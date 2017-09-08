@@ -14,11 +14,11 @@ So according to Wiki:
 
 Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing.
 
-*But what the hell does terms mean anyway?*
+**But what the hell does terms mean anyway?**
 
 So...
 
-*purely functional* - mathematical functions, immutable data and no side effects.
+**purely functional** - mathematical functions, immutable data and no side effects.
 
 ```haskell
 addOne::Int -> Int
@@ -51,5 +51,4 @@ hypotenuse 4 :: Floating a => a -> a
 5.0
 ```
 
-
-*non-strict semantics* - lazy execution, nothing is evaluated until needed and it's done only once.
+**non-strict semantics** - lazy execution, nothing is evaluated until needed and it's done only once.
