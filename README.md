@@ -21,15 +21,19 @@ So...
 **purely functional** - mathematical functions, immutable data and no side effects.
 
 ```haskell
+-- examples/example1.hs
 addOne::Int -> Int
 addOne x = x + 1
 
-hypotenuse:: Floating a => a -> a -> a
+hypotenuse::Floating a => a -> a -> a
 hypotenuse a b = (a**2 + b**2)**(1.0/2)
 
 hypo3::Floating a => a -> a
 hypo3 = hypotenuse 3
+
+applyToList f = map f [1..10]
 ```
+Let's is it in action
 
 ```console
 mariusz:~/playground/haskell-talk (master)$ ghci
@@ -49,6 +53,25 @@ addOne 5 :: Int
 hypotenuse 4 :: Floating a => a -> a
 *Main> hypo3 4
 5.0
+*Main> applyToList hypo3
+[3.1622776601683795,3.605551275463989,4.242640687119285,5.0,5.830951894845301,6.708203932499369,7.615773105863909,8.54400374531753,9.486832980505138,10.44030650891055]
+*Main> :t applyToList
+applyToList :: (Enum a, Num a) => (a -> b) -> [b]
 ```
 
 **non-strict semantics** - lazy execution, nothing is evaluated until needed and it's done only once.
+
+```haskell
+-- examples/example2.hs
+primes = filterPrime [2..]
+  where filterPrime (p:xs) = p : filterPrime [x | x <- xs, x `mod` p /= 0]
+
+loop xs = xs ++ loop xs
+```
+
+```console
+*Main> :set +s
+*Main> take 100 primes
+[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109,113,127,131,137,139,149,151,157,163,167,173,179,181,191,193,197,199,211,223,227,229,233,239,241,251,257,263,269,271,277,281,283,293,307,311,313,317,331,337,347,349,353,359,367,373,379,383,389,397,401,409,419,421,431,433,439,443,449,457,461,463,467,479,487,491,499,503,509,521,523,541]
+(0.01 secs, 0 bytes)
+```
