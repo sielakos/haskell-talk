@@ -41,7 +41,7 @@ hypo3 = hypotenuse 3
 
 applyToList f = map f [1..10]
 ```
-Let's is it in action
+Let's see it in action
 
 ```console
 mariusz:~/playground/haskell-talk (master)$ ghci

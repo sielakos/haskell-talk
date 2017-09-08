@@ -18,5 +18,10 @@ list5 = tail list4
 -- let's take only 10
 list6 = take 10 [2,7 ..]
 
+-- let's filter
+list7 = filter (>10) [2..20]
+
+list7' = [x | x <- [2..20], x > 10]
+
 -- something a bit less boring
 fib = [1, 1] ++ zipWith (+) fib (drop 1 fib)
