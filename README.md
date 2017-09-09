@@ -51,7 +51,7 @@ $ ./examples/program1 5 10 15 10000
 "50005000"
 ```
 
-### build system 
+### build system
 
 There is also build system for haskell [cabal](https://www.haskell.org/cabal/)
 
