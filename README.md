@@ -21,7 +21,7 @@ You can run examples with docker or just install haskell or whatever
 ```console
 $ ghci
 GHCi, version 7.10.3: http://www.haskell.org/ghc/  :? for help
-Prelude> 
+Prelude>
 ```
 
 ### compilation
@@ -37,7 +37,7 @@ import Control.Monad
 main = do
   args <- getArgs
   -- mapM_ is like map, but for also accumulates monads
-  mapM_ (\arg -> print $ sum [1 .. read arg]) args 
+  mapM_ (\arg -> print $ sum [1 .. read arg]) args
 ```
 
 ```console
@@ -51,6 +51,10 @@ $ ./examples/program1 5 10 15 10000
 "50005000"
 ```
 
+### build system 
+
+There is also build system for haskell [cabal](https://www.haskell.org/cabal/)
+
 ## What the hell is that Haskell anyway?
 
 So according to Wiki:
@@ -61,7 +65,7 @@ Haskell is a standardized, general-purpose purely functional programming languag
 
 So...
 
-## purely functional
+### purely functional
 
 mathematical functions, immutable data and no side effects.
 
@@ -110,7 +114,7 @@ Also valid method of loading file
 $ ghci examples/example1.hs
 ```
 
-## non-strict semantics
+### non-strict semantics
 
 lazy execution, nothing is evaluated until needed and it's done only once.
 
@@ -129,7 +133,7 @@ loop xs = xs ++ loop xs
 (0.01 secs, 0 bytes)
 ```
 
-## strong static typing
+### strong static typing
 
 No implicit type conversions
 
@@ -157,7 +161,9 @@ Prelude> :t f
 f :: Num a => a -> a
 ```
 
-## recursion
+## Other features
+
+### recursion
 
 ```haskell
 -- examples/example3.hs
@@ -169,7 +175,7 @@ factorial2 n = fac n 1
         fac n acc = fac (n - 1) $! acc * n
 ```
 
-## lists
+### lists
 
 ```haskell
 -- examples/example4.hs
@@ -201,7 +207,7 @@ list7' = [x | x <- [2..20], x > 10]
 fib = [1, 1] ++ zipWith (+) fib (drop 1 fib)
 ```
 
-## tuples
+### tuples
 
 ```haskell
 -- examples/example5.hs
@@ -221,7 +227,7 @@ second = snd tuple2
 listOfTuples = zip [1..] [2,4..]
 ```
 
-## polymorphism and pattern matching
+### polymorphism and pattern matching
 
 ```haskell
 -- examples/example6.hs
@@ -249,7 +255,7 @@ permutations list =
         insert x ls@(y:ys) = (x:ls) : (map (y:) $ insert x ys)
 ```
 
-## lambdas and currying
+### lambdas and currying
 
 ```haskell
 -- examples/example7.hs
@@ -272,7 +278,7 @@ something = func1 2
 something2 y = func1 2 y
 ```
 
-## guards
+### guards
 
 ```haskell
 -- examples/example8.hs
@@ -283,7 +289,7 @@ someFunction x
   | otherwise = "value is even"
 ```
 
-## Maybe and Either
+### Maybe and Either
 
 ```haskell
 -- examples/example9.hs
