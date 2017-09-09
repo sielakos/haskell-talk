@@ -6,4 +6,6 @@ import Control.Monad
 main = do
   args <- getArgs
   -- mapM_ is like map, but for also accumulates monads
-  mapM_ (\arg -> print $ sum [1 .. read arg]) args
+  mapM_ (print . sum . range . read) args
+
+range n = [1 .. n]
