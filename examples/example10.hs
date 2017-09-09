@@ -40,14 +40,12 @@ interpretArthmetic Plus x y = x + y
 interpretArthmetic Minus x y = x - y
 
 -- it's just 50 - (20 + 100 - 90)
-exampleTree = (Node
-    Minus 
+exampleTree = Node
+    Minus
     (Leaf 50)
-    (Node
+    $ Node
       Plus
       (Leaf 20)
-      (Node Minus (Leaf 100) (Leaf 90))
-    )
-  )
+      $ Node Minus (Leaf 100) (Leaf 90)
 
 executionResult = executeTree exampleTree interpretArthmetic
